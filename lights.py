@@ -56,8 +56,8 @@ GPIO.setup(SPICS, GPIO.OUT)
 potentiometer_adc = 0;
 
 last_read = 0       # this keeps track of the last potentiometer value
-tolerance = 25       # to keep from being jittery we'll only change
-                    # volume when the pot has moved more than 5 'counts'
+tolerance = 25       # to keep from being jittery
+2readsago = 0       # to keep from lights turning off too soon? maybe?
 
 while True:
         # we'll assume that the pot didn't move
