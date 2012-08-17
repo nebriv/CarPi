@@ -66,10 +66,7 @@ while True:
         # read the analog pin
         read = readadc(potentiometer_adc, SPICLK, SPIMOSI, SPIMISO, SPICS)
         # how much has it changed since the last read?
-        changeamount = abs(read - last_read)
-        if changeamount > tolerance:
-                change = 1
-        if change:
+        if tolerance < abs(read - last_read):
             read_changed = True
         
         GPIO.setmode(GPIO.BOARD)
