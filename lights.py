@@ -2,7 +2,6 @@
 import time
 import os
 import RPi.GPIO as GPIO
-
 GPIO.setmode(GPIO.BCM)
 DEBUG = 0
 
@@ -53,7 +52,7 @@ GPIO.setup(SPIMOSI, GPIO.OUT)
 GPIO.setup(SPIMISO, GPIO.IN)
 GPIO.setup(SPICLK, GPIO.OUT)
 GPIO.setup(SPICS, GPIO.OUT)
-GPIO.setup(mosi, GPIO.OUT)
+GPIO.setup(19, GPIO.OUT)
 # 10k trim pot connected to adc #0
 potentiometer_adc = 0;
 
@@ -69,7 +68,7 @@ while True:
         trim_pot = readadc(potentiometer_adc, SPICLK, SPIMOSI, SPIMISO, SPICS)
         # how much has it changed since the last read?
         pot_adjust = abs(trim_pot - last_read)
-
+        GPIO.setmode(GPIO.BOARD)
         if trim_pot > 700:
             GPIO.output(19, GPIO.LOW)
             print "Lights Off"
@@ -77,7 +76,7 @@ while True:
         if trim_pot < 700:
             GPIO.output(19, GPIO.HIGH)
             print "Lights On"
-        
+       GPIO.setmode(GPIO.BCM) 
         if DEBUG:
                 print "trim_pot:", trim_pot
                 print "pot_adjust:", pot_adjust
