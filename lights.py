@@ -56,7 +56,7 @@ GPIO.setup(SPICS, GPIO.OUT)
 potentiometer_adc = 0;
 
 last_read = 0       # this keeps track of the last potentiometer value
-tolerance = 25       # to keep from being jittery
+tolerance = 10       # to keep from being jittery
 two_reads = 0       # to keep from lights turning off too soon? maybe?
 
 while True:
@@ -73,7 +73,7 @@ while True:
         GPIO.setup(19, GPIO.OUT)
         if read_changed:
             print read
-            if read > 700 and last_read > two_reads:
+            if read > 700 and tolerance > abs(last_read - two_reads):
                 GPIO.output(19, GPIO.LOW)
                 print "Lights Off"
 
