@@ -73,7 +73,7 @@ while True:
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(19, GPIO.OUT)
         if read_changed:
-            print trim_pot
+            print read
             if trim_pot > 700:
                 GPIO.output(19, GPIO.LOW)
                 print "Lights Off"
