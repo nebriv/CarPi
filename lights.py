@@ -84,9 +84,6 @@ while True:
                     lightstatus = "on"
                     print "Lights On"
         GPIO.setmode(GPIO.BCM)
-        ##if ( trim_pot_changed ):
-        
-
         # save the potentiometer reading for the next loop
         two_reads = last_read
         last_read = read
