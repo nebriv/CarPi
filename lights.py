@@ -56,7 +56,7 @@ GPIO.setup(SPICS, GPIO.OUT)
 potentiometer_adc = 0;
 
 last_read = 0       # this keeps track of the last potentiometer value
-tolerance = 5       # to keep from being jittery we'll only change
+tolerance = 25       # to keep from being jittery we'll only change
                     # volume when the pot has moved more than 5 'counts'
 
 while True:
@@ -66,7 +66,9 @@ while True:
         # read the analog pin
         read = readadc(potentiometer_adc, SPICLK, SPIMOSI, SPIMISO, SPICS)
         # how much has it changed since the last read?
-        change = abs(read - last_read)
+        changeamount = abs(read - last_read)
+        if changeamount > tolerance:
+                change = true
         if change:
             read_changed = True
         
