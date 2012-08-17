@@ -72,12 +72,13 @@ while True:
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(19, GPIO.OUT)
         if read_changed:
-            print read
             if read > 700 and read > two_reads:
+                print read
                 GPIO.output(19, GPIO.LOW)
                 print "Lights Off"
 
             if read < 700:
+                print read
                 GPIO.output(19, GPIO.HIGH)
                 print "Lights On"
         GPIO.setmode(GPIO.BCM)
