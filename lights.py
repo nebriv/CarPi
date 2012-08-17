@@ -74,25 +74,18 @@ while True:
         GPIO.setup(19, GPIO.OUT)
         if read_changed:
             print read
-            if trim_pot > 700:
+            if read > 700:
                 GPIO.output(19, GPIO.LOW)
                 print "Lights Off"
 
-            if trim_pot < 700:
+            if read < 700:
                 GPIO.output(19, GPIO.HIGH)
                 print "Lights On"
-            if DEBUG:
-                    print "trim_pot:", trim_pot
-                    print "pot_adjust:", pot_adjust
-                    print "last_read", last_read
-                    
-            if DEBUG:
-                    print "trim_pot_changed", trim_pot_changed
         GPIO.setmode(GPIO.BCM)
         ##if ( trim_pot_changed ):
         
 
         # save the potentiometer reading for the next loop
-        last_read = trim_pot
+        last_read = read
         # hang out and do nothing for a half second
         time.sleep(1)
