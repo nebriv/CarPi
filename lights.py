@@ -69,24 +69,26 @@ while True:
         pot_adjust = abs(trim_pot - last_read)
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(19, GPIO.OUT)
-        if trim_pot > 700:
-            GPIO.output(19, GPIO.LOW)
-            print "Lights Off"
+        if trim_pot_changed:
+            print trim_pot
+            if trim_pot > 700:
+                GPIO.output(19, GPIO.LOW)
+                print "Lights Off"
 
-        if trim_pot < 700:
-            GPIO.output(19, GPIO.HIGH)
-            print "Lights On"
-        GPIO.setmode(GPIO.BCM) 
-        if DEBUG:
-                print "trim_pot:", trim_pot
-                print "pot_adjust:", pot_adjust
-                print "last_read", last_read
+            if trim_pot < 700:
+                GPIO.output(19, GPIO.HIGH)
+                print "Lights On"
+            GPIO.setmode(GPIO.BCM) 
+            if DEBUG:
+                    print "trim_pot:", trim_pot
+                    print "pot_adjust:", pot_adjust
+                    print "last_read", last_read
 
-        if ( pot_adjust > tolerance ):
-               trim_pot_changed = True
+            if ( pot_adjust > tolerance ):
+                   trim_pot_changed = True
 
-        if DEBUG:
-                print "trim_pot_changed", trim_pot_changed
+            if DEBUG:
+                    print "trim_pot_changed", trim_pot_changed
 
         ##if ( trim_pot_changed ):
         
