@@ -57,7 +57,7 @@ potentiometer_adc = 0;
 
 last_read = 0       # this keeps track of the last potentiometer value
 tolerance = 25       # to keep from being jittery
-2readsago = 0       # to keep from lights turning off too soon? maybe?
+2reads = 0       # to keep from lights turning off too soon? maybe?
 
 while True:
         # we'll assume that the pot didn't move
@@ -73,7 +73,7 @@ while True:
         GPIO.setup(19, GPIO.OUT)
         if read_changed:
             print read
-            if read > 700 and last_read > 2readsago:
+            if read > 700 and last_read > 2reads:
                 GPIO.output(19, GPIO.LOW)
                 print "Lights Off"
 
@@ -85,7 +85,7 @@ while True:
         
 
         # save the potentiometer reading for the next loop
-        2readsago = last_read
+        2reads = last_read
         last_read = read
         # hang out and do nothing for a half second
         time.sleep(1)
