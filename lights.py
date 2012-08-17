@@ -72,9 +72,11 @@ while True:
 
         if trim_pot > 700:
             GPIO.output(19, GPIO.LOW)
+            print "Lights Off"
 
         if trim_pot < 700:
             GPIO.output(19, GPIO.HIGH)
+            print "Lights On"
         
         if DEBUG:
                 print "trim_pot:", trim_pot
