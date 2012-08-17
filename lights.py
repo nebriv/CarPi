@@ -52,7 +52,6 @@ GPIO.setup(SPIMOSI, GPIO.OUT)
 GPIO.setup(SPIMISO, GPIO.IN)
 GPIO.setup(SPICLK, GPIO.OUT)
 GPIO.setup(SPICS, GPIO.OUT)
-GPIO.setup(19, GPIO.OUT)
 # 10k trim pot connected to adc #0
 potentiometer_adc = 0;
 
@@ -69,6 +68,7 @@ while True:
         # how much has it changed since the last read?
         pot_adjust = abs(trim_pot - last_read)
         GPIO.setmode(GPIO.BOARD)
+        GPIO.setup(19, GPIO.OUT)
         if trim_pot > 700:
             GPIO.output(19, GPIO.LOW)
             print "Lights Off"
