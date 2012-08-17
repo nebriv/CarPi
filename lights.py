@@ -4,7 +4,7 @@ import os
 import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BCM)
-DEBUG = 1
+DEBUG = 0
 
 # read SPI data from MCP3008 chip, 8 possible adc's (0 thru 7)
 def readadc(adcnum, clockpin, mosipin, misopin, cspin):
@@ -71,10 +71,10 @@ while True:
         pot_adjust = abs(trim_pot - last_read)
 
         if trim_pot > 700:
-            GPIO.output(mosi, GPIO.LOW)
+            GPIO.output(19, GPIO.LOW)
 
         if trim_pot < 700:
-            GPIO.output(mosi, GPIO.HIGH)
+            GPIO.output(19, GPIO.HIGH)
         
         if DEBUG:
                 print "trim_pot:", trim_pot
