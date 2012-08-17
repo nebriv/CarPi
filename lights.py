@@ -61,15 +61,18 @@ tolerance = 5       # to keep from being jittery we'll only change
 
 while True:
         # we'll assume that the pot didn't move
-        trim_pot_changed = False
+        read_changed = False
 
         # read the analog pin
-        trim_pot = readadc(potentiometer_adc, SPICLK, SPIMOSI, SPIMISO, SPICS)
+        read = readadc(potentiometer_adc, SPICLK, SPIMOSI, SPIMISO, SPICS)
         # how much has it changed since the last read?
-        pot_adjust = abs(trim_pot - last_read)
+        change = abs(trim_pot - last_read)
+        if change:
+            read_changed = True
+        
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(19, GPIO.OUT)
-        if trim_pot_changed:
+        if read_changed:
             print trim_pot
             if trim_pot > 700:
                 GPIO.output(19, GPIO.LOW)
@@ -82,10 +85,7 @@ while True:
                     print "trim_pot:", trim_pot
                     print "pot_adjust:", pot_adjust
                     print "last_read", last_read
-
-            if ( pot_adjust > tolerance ):
-                   trim_pot_changed = True
-
+                    
             if DEBUG:
                     print "trim_pot_changed", trim_pot_changed
         GPIO.setmode(GPIO.BCM)
