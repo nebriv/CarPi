@@ -68,12 +68,12 @@ while True:
         # how much has it changed since the last read?
         if tolerance < abs(read - last_read):
             read_changed = True
-        
+            
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(19, GPIO.OUT)
         if read_changed:
             print read
-            if read > 700:
+            if read > 700 and last_read > 2readsago:
                 GPIO.output(19, GPIO.LOW)
                 print "Lights Off"
 
@@ -85,6 +85,7 @@ while True:
         
 
         # save the potentiometer reading for the next loop
+        2readsago = last_read
         last_read = read
         # hang out and do nothing for a half second
         time.sleep(1)
