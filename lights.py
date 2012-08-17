@@ -78,7 +78,6 @@ while True:
             if trim_pot < 700:
                 GPIO.output(19, GPIO.HIGH)
                 print "Lights On"
-            GPIO.setmode(GPIO.BCM) 
             if DEBUG:
                     print "trim_pot:", trim_pot
                     print "pot_adjust:", pot_adjust
@@ -89,7 +88,7 @@ while True:
 
             if DEBUG:
                     print "trim_pot_changed", trim_pot_changed
-
+        GPIO.setmode(GPIO.BCM)
         ##if ( trim_pot_changed ):
         
 
