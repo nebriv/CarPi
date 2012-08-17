@@ -71,10 +71,10 @@ while True:
         pot_adjust = abs(trim_pot - last_read)
 
         if trim_pot > 701:
-            GPIO.output(mosi, GPIO.low)
+            GPIO.output(mosi, GPIO.LOW)
 
         if trim_pot <= 700:
-            GPIO.output(mosi, GPIO.high)
+            GPIO.output(mosi, GPIO.HIGH)
         
         if DEBUG:
                 print "trim_pot:", trim_pot
