@@ -73,7 +73,7 @@ while True:
         GPIO.setup(19, GPIO.OUT)
         if read_changed:
             print read
-            if read > 700 and tolerance > abs(last_read - two_reads):
+            if read > 700 and read > two_reads:
                 GPIO.output(19, GPIO.LOW)
                 print "Lights Off"
 
