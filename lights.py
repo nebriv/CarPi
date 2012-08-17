@@ -66,7 +66,7 @@ while True:
         # read the analog pin
         read = readadc(potentiometer_adc, SPICLK, SPIMOSI, SPIMISO, SPICS)
         # how much has it changed since the last read?
-        change = abs(trim_pot - last_read)
+        change = abs(read - last_read)
         if change:
             read_changed = True
         
