@@ -68,7 +68,7 @@ while True:
         # how much has it changed since the last read?
         changeamount = abs(read - last_read)
         if changeamount > tolerance:
-                change = true
+                change = 1
         if change:
             read_changed = True
         
